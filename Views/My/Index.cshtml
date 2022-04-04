@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dropdown.Models.Emp1>
+
+<table class="table">
+    <thead>
+        <a class="btn btn-outline-info" asp-controller="My" asp-action="Create">Add New Customer</a>&nbsp;&nbsp;&nbsp;
+        <tr>
+            <th scope="col">FirstName</th>
+            <th scope="col">SurName</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age </th>
+
+            @*<th scope="col">State</th>*@
+            <th scope="col">Mobile</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+
+        @foreach (var items in Model)
+        {
+            <tr>
+                <td>@items.First_Name</td>
+                <td>@items.Sur_Name</td>
+
+
+                <td>@items.Gender</td>
+                <td>@items.Age</td>
+                @*<th>@items.State</th>*@
+
+
+                <td>@items.Mobile</td>
+                <td>@items.Address</td>
+
+                <td>
+                    <a class="btn btn-outline-info" asp-controller="My" asp-action="Create">Create</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-outline-info" asp-action="Update" asp-route-Id="@items.Id" value="Edit">Update</a>&nbsp;&nbsp;&nbsp;
+
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-Id="@items.Id" onclick="return confirm('Do You Want to Delete this Record')">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

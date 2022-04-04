@@ -1,0 +1,126 @@
+﻿
+
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+@*<form asp-action="Create" id="submit">*@
+    <form id="submit">
+        <div >
+            <label for="exampleInputEmail1">First Name</label>
+            <input type="text" id="txtname" name="First_Name" placeholder="Enter Name">
+
+        </div>
+        <div >
+            <label for="exampleInputPassword1">Last Name</label>
+            <input type="text"  id="txtlname"  name="Sur_Name" placeholder="Enter Name">
+        </div>
+        <div >
+            <label for="exampleInputPassword1">Gender</label>
+            <input type="text"  id="txtgen"  name="Gender" placeholder="Enter Name">
+        </div>
+
+        @*<label asp-for="State">Choose a car:</label>
+
+            <select  asp-for="State">
+                <option >Choose Your Country</option>
+                <option >India</option>
+                <option >Japan</option>
+                <option >USA</option>
+                <option >Russia</option>
+            </select>*@
+
+        @*<label asp-for="c.c_id">Choose Country:</label>
+
+            <select asp-for="c.c_id" class="obj1">
+                <option>Choose Your Country</option>
+                <option>India</option>
+                <option>Japan</option>
+                <option>USA</option>
+                <option>Russia</option>
+            </select>
+
+            <label asp-for="s.s_id">Choose State</label>
+
+            <select asp-for="s.s_id" class="obj2">
+                <option>Choose Your Country</option>
+                <option>India</option>
+                <option>Japan</option>
+                <option>USA</option>
+                <option>Russia</option>
+            </select>*@
+
+
+        <div>
+            <label for="exampleInputPassword1">Age</label>
+            <input type="text" name="Age"  id="txtage"  placeholder="Enter Name">
+        </div>
+        <div >
+            <label for="exampleInputPassword1">Mobile No</label>
+            <input type="text" name="Mobile"  id="txtmobile"  placeholder="Enter Name">
+        </div>
+
+        @*<div class="form-group">
+                <label for="exampleInputPassword1">Mobile No</label>
+                <select type="text" asp-for="@Model.Dropdown.Country" placeholder="Enter Name">Select</select>
+            </div>*@
+
+
+        <div>
+            <label for="exampleInputPassword1">Address</label>
+            <input type="text" name="Address" id="txtadd" placeholder="Enter Name">
+        </div>
+
+        <div>
+            <input type="button"  id="SubmitBtn" value="Submit"/>
+        </div>
+
+    </form>
+
+
+    <script>
+
+
+        @*$(document).ready(function () {
+            $("#SubmitBtn").click(function () {
+                debugger;
+                alert(My);
+                var data = $("#submit").serialize();
+                console.log(data);
+                $ajax({
+
+                    type: 'POST',
+                    url: '@Url.Action("Create1","My")',
+                    data: data
+
+                }).done
+
+                    (function (Response) {
+
+                        if (Response) {
+                            alert("Form Sucessfully Submited");
+                        }
+                        else {
+                            alert("Form Not Submited...!");
+                        }
+
+                    });
+       });*@
+        $(document).ready(function () {
+            $("#SubmitBtn").click(function (e) {
+                var fdata = $("#submit").serialize();
+                $.ajax({
+                    url: '@Url.Action("GetData","My")',
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: fdata
+                });
+
+            });
+        });
+    </script>
