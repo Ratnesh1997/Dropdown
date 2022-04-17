@@ -113,13 +113,23 @@
         $(document).ready(function () {
             $("#SubmitBtn").click(function (e) {
                 var fdata = $("#submit").serialize();
+               /* var logurl="../My/Index"*/
                 $.ajax({
-                    url: '@Url.Action("GetData","My")',
+                    url: '@Url.Action("Create", "My")',
+
                     type: "POST",
                     dataType: 'json',
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: fdata
+                    data: fdata,
+                    //success: function (response) {
+                    //    if (response.success == true) {
+                    //        toastr.success(response.message, 'Success Alert', { timeOut: 3000 });
+                    //    }
+                    
+                   
+
                 });
+                //window.location.href = logurl;
 
             });
         });

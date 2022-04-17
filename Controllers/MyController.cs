@@ -4,15 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NToastNotify;
 
 namespace Dropdown.Controllers
 {
     public class MyController : Controller
     {
+        private readonly MyContext _context;
+        private readonly IToastNotification _toast;
+
+
         public MyContext _DBCONN { get; }
-            public MyController(MyContext DBCONN)
+            public MyController(MyContext DBCONN,IToastNotification toast)
             {
                 this._DBCONN = DBCONN;
+            _toast = toast;
             }
 
             public IActionResult Index()
@@ -32,8 +38,9 @@ namespace Dropdown.Controllers
         {
             _DBCONN.emp1s.Add(e);
             _DBCONN.SaveChanges();
-           
-            return RedirectToAction("Index");
+
+            
+                return RedirectToAction("Index");
         }
 
 
@@ -47,6 +54,7 @@ namespace Dropdown.Controllers
             var data = _DBCONN.emp1s.SingleOrDefault(x => x.Id == id);
             _DBCONN.emp1s.Remove(data);
             _DBCONN.SaveChanges();
+            _toast.AddAlertToastMessage("Successfully Deleted");
             return RedirectToAction("Index");
 
         }
